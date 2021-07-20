@@ -1,6 +1,8 @@
 public class Action implements Rate {
 
   int meter[] = new int[5];
+  int action[] = new int[5];
+  boolean healthy[] = { true, true, true, true, true };
   int turn = 1;
   
   public Action(int[] m) {
@@ -14,6 +16,7 @@ public class Action implements Rate {
   private void setMeter(int[] set) {
     for (int i = 0; i < meter.length; i++)
       meter[i] = set[i];
+    turn = 26 - (meter[4] / 4);
   }
 
   private void addMeter(int[] add) {
@@ -31,9 +34,25 @@ public class Action implements Rate {
   public void checkMeter() {
     for (int i = 0; i < meter.length; i++) {
       if (meter[i] < 0) {
-        System.out.println("You have ran out of meter " + (i + 1));
+          System.out.print("You have run out of ");
+          switch (i) {
+          case 0:
+            System.out.println("Gas");
+            break;
+          case 1:
+            System.out.println("Food");
+            break;
+          case 2:
+            System.out.println("Drink");
+            break;
+          case 3:
+            System.out.println("Entertainment");
+            break;
+          case 4:
+            System.out.println("Time (which is good)");
+          }
+        }
       }
-    }
     // for (int i = 0; i < meter.length; i++) {
     //   if (!meter[i]) {
     //     return false;
@@ -42,7 +61,9 @@ public class Action implements Rate {
     // return true;
   }
 
-  private void addAction() {
+  private void addAction(boolean isMoving) {
+    if (!isMoving)
+      meter[0] += 10;
     addMeter(rate);
     boundMeter();
     checkMeter();
@@ -50,114 +71,154 @@ public class Action implements Rate {
   }
 
   public void left() {
-    addAction();
-    System.out.println("You went left");
+    //turn();
+    System.out.println("You went left\n");
+    addAction(true);
+    setAction(none);
   }
 
   public void right() {
-    addAction();
-    System.out.println("You went right");
+    //turn();
+    System.out.println("You went right\n");
+    addAction(true);
+    setAction(none);
   }
 
   public void up() {
-    addAction();
-    System.out.println("You went up");
+    //turn();
+    System.out.println("You went up\n");
+    addAction(true);
+    setAction(none);
   }
 
   public void down() {
-    addAction();
-    System.out.println("You went down");
+    //turn();
+    System.out.println("You went down\n");
+    addAction(true);
+    setAction(none);  
   }
 
-  public void sandwichShop() {
+  public void sandwich() {
+    //turn();
+    System.out.println("You went to the Sandwich Shop\n");
     addMeter(sandwichShop);
-    addAction();
-    System.out.println("You went to the Sandwich Shop");
-    actionInfo(sandwichShop);
+    addAction(false);
+    setAction(sandwichShop);
   }
 
   public void nightclub() {
+    //turn();
+    System.out.println("You went to the Nightclub\n");
     addMeter(nightclub);
-    addAction();
-    System.out.println("You went to the Nightclub");
-    actionInfo(nightclub);
+    addAction(false);
+    setAction(nightclub);
   }
 
-  public void italianRestaurant() {
+  public void italian() {
+    //turn();
+    System.out.println("You went to the Italian Restaurant\n");
     addMeter(italianRestaurant);
-    addAction();
-    System.out.println("You went to the Italian Restaurant");
-    actionInfo(italianRestaurant);
+    addAction(false);
+    setAction(italianRestaurant);
   }
 
   public void gas() {
+    //turn();
+    System.out.println("You went to the Gas Station\n");
     addMeter(gasStation);
-    addAction();
-    System.out.println("You went to the Gas Station");
-    actionInfo(gasStation);
+    addAction(false);
+    setAction(gasStation);
   }
 
   public void airport() {
+    //turn();
+    System.out.println("You went to the Airport\n");
     addMeter(airport);
-    addAction();
-    System.out.println("You went to the Airport");
-    actionInfo(airport);
+    addAction(false);
+    setAction(airport);
   }
 
-  public void flowerGarden() {
+  public void flower() {
+    //turn();
+    System.out.println("You went to the Flower Garden\n");
     addMeter(flowerGarden);
-    addAction();
-    System.out.println("You went to the Flower Garden");
-    actionInfo(flowerGarden);
+    addAction(false);
+    setAction(flowerGarden);
   }
 
-  public void coffeeHouse() {
+  public void coffee() {
+    //turn();
+    System.out.println("You went to the Coffee House\n");
     addMeter(coffeeHouse);
-    addAction();
-    System.out.println("You went to the Coffee House");
-    actionInfo(coffeeHouse);
+    addAction(false);
+    setAction(coffeeHouse);
   }
 
-  public void tacoStand() {
+  public void taco() {
+    //turn();
+    System.out.println("You went to the Taco Stand\n");
     addMeter(tacoStand);
-    addAction();
-    System.out.println("You went to the Taco Stand");
-    actionInfo(tacoStand);
+    addAction(false);
+    setAction(tacoStand);
   }
 
   public void ferrisWheel() {
+    //turn();
+    System.out.println("You went to the Ferris Wheel\n");
     addMeter(ferrisWheel);
-    addAction();
-    System.out.println("You went to the Ferris Wheel");
-    actionInfo(ferrisWheel);
+    addAction(false);
+    setAction(ferrisWheel);
   }
 
   public void ballroom() {
+    //turn();
+    System.out.println("You went to the Ballroom\n");
     addMeter(ballroom);
-    addAction();
-    System.out.println("You went to the Ballroom");
-    actionInfo(ballroom);
+    addAction(false);
+    setAction(ballroom);
   }
 
   public void theatre() {
+    //turn();
+    System.out.println("You went to the theatre\n");
     addMeter(theatre);
-    addAction();
-    System.out.println("You went to the theatre");
-    actionInfo(theatre);
+    addAction(false);
+    setAction(theatre);
   }
 
   public void juice() {
+    //turn();
+    System.out.println("You went to get juice at the Juice Box\n");
     addMeter(juice);
-    addAction();
-    System.out.println("You went to get juice");
-    actionInfo(juice);
+    addAction(false);
+    setAction(juice);
   }
 
   public void fair() {
+    //turn();
+    System.out.println("You went to the fair\n");
     addMeter(fair);
-    addAction();
-    System.out.println("You went to the fair");
-    actionInfo(fair);
+    addAction(false);
+    setAction(fair);
+  }
+
+  public void ring() {
+    //turn();
+    System.out.println("You got the ring\n");
+    addAction(false);
+    setAction(none);
+  }
+
+  public void mall() {
+
+  }
+
+  public void setAction(int[] a) {
+    action = a;
+  }
+
+  public void turn() {
+    System.out.println("Turn: " + turn);
   }
 
   public int getGas() {
@@ -188,12 +249,11 @@ public class Action implements Rate {
     return turn;
   }
 
-  public void actionInfo(int[] action) {
-    System.out.println("The action granted: ");
-    System.out.println(action[0] + " Gas");
-    System.out.println(action[1] + " Food");
-    System.out.println(action[2] + " Drink");
-    System.out.println(action[3] + " Entertainment");
-    System.out.println("-----");
+  public int[] getAction() {
+    return action;
+  }
+
+  public boolean[] getHealthy() {
+    return healthy;
   }
 }

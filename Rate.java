@@ -1,4 +1,5 @@
 public interface Rate {
+  int[] none = { 0, 0, 0, 0, 0 };
   int[] starting = { 100, 50, 50, 75, 100 };
   int[] rate = { -10, -4, -6, -8, -4 };
   int[] sandwichShop = { 0, 40, 20, 0, 0 };
